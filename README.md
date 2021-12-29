@@ -28,6 +28,10 @@ Plans for 0.01b
 Developers:
 
 Thomas Pickering (Lead Programmer & Project Manager)
+
 Logix (Artist & Programmer)
+
 Higokumaru (Artist & Junior Programmer)
+
 David Carroll (Artist & Junior Programmer)
+
