@@ -5,27 +5,40 @@
 
 A Work-in-Progress game created for fun and learning.
 
-Update 0.01a
-=====
+### Update 0.01b
 
 Description added.
 
+Genre and theme established: Top-down Dungeon Crawler with Atelier Element. Medieval/archaic theme.
+
+Roles assigned (read credits below).
+
+Stories brainstormed and scrapped from previous iteration.
+
+### General Roadmap
+
+* [ ] Establish story    
+
+* [ ] Ensure all developers are familiar with relevant tools and the concept of version controlling (Git/github, unity, creative commons usage).
 
 
-Plans for 0.01b
-=====
+### Technical Roadmap 
 
-* [x] Establish genre         ===Top-down Dungeon Crawler with Atelier Element===
 
-* [ ] Make sure all developers are familiar with relevant tools (Git/github, unity, creative commons usage).
+* [ ] Become familiar with Unity toolset and physics engine.
 
-* [x] Assign roles, if necessary.
+* [ ] Develop rudimentary player character, complete with sprite, idle and active states.
 
-* [ ] Establish theme/setting.
+* [ ] Create a basic tilemap for feature and unit testing, optimally would include as varied physics sandboxing as can be present (i.e. round corners, sharp corners, moving (?) parts)
 
-* [ ] Create roadmap.
+* [ ] Procure Copyright/royalty free sound materials, or create them.
 
-Developers:
+* [ ] Demo these audio assets.
+
+* [ ] Brainstorm ideas for the inventory, item, and customization systems.
+
+
+### Developers:
 
 Thomas Pickering (Lead Programmer & Project Manager)
 
