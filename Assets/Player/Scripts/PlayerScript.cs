@@ -2,10 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// PlayerScript, interfaces with the user to maintain control over the player. Specifically its sprite, animations, in-game actions, and stats.
+// Main programmer: Thomas Pickering
 public class PlayerScript : MonoBehaviour
 {
+    /* Editor-changeable fields
+     * Anything with SerializeField can be modified in the editor.
+     * Those changes will only last for as long as the script does not change it again.
+     * 
+     * 
+     * Note to artists: When changing animations, make sure all names and references remained unchanged. 
+     * If adding any new animations and help is needed to integrate it into the Player entity, consult one of the programmers.
+     *
+     * Note to programmers: Any component added via the editor should be declared as a field (not serialized, since that is on by default) and initialized in the Start() function.
+     * 
+     * -Thomas Pickering
+     */
+    [SerializeField] private Animator p_anim_controller;
 
-    private Animator p_anim_controller;
+
+
+    // Physics and control fields
+    Vector3 movement = new Vector3(0.0f, 0.0f, 0.0f);
+    Rigidbody2D p_physics;
+    bool obeysGravity;
+    float sprintFactor = 1.0f;
+
     private enum direction : byte
     {
         North,
@@ -17,27 +39,43 @@ public class PlayerScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         p_anim_controller = GetComponent<Animator>();
+        
+        // [TENTATIVE]: Player will not be under effect of gravity except maybe for special circumstances.
+        p_physics = GetComponent<Rigidbody2D>();
+        p_physics.gravityScale = 0.0f;
+        obeysGravity = false;
+
+        // [TENTATIVE]: Idle or starting face direction is South.
         face_dir = direction.South;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (Input.GetKey(KeyCode.W))
+        if(Input.GetKey(KeyCode.LeftShift))
         {
-            Debug.Log("Playing North assets");
-            p_anim_controller.Play("north_walk", 0);
-            face_dir = direction.North;
+            sprintFactor = 2.0f;
         }
 
+        // Look for WASD input and act on that context.
+        if (Input.GetKey(KeyCode.W))
+        {
+            
+            Debug.Log("Playing North assets");
+            p_anim_controller.Play("north_walk", 0);                        // Play animation to make sprite face north.
+            face_dir = direction.North;
+            movement = new Vector3(0.0f, Input.GetAxis("Vertical"), 0.0f);
+            transform.position += movement * Time.deltaTime * sprintFactor;                // Actually move the sprite.
+        }
+        // Same process for the other three Key reading If-statements.
         if (Input.GetKey(KeyCode.A))
         {
             Debug.Log("Playing West assets");
             p_anim_controller.Play("west_walk", 0);
             face_dir = direction.West;
+            movement = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);
+            transform.position += movement * Time.deltaTime * sprintFactor;
         }
 
         if (Input.GetKey(KeyCode.S))
@@ -45,6 +83,8 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("Playing South assets");
             p_anim_controller.Play("south_walk", 0);
             face_dir = direction.South;
+            movement = new Vector3(0.0f, Input.GetAxis("Vertical"), 0.0f);
+            transform.position += movement * Time.deltaTime * sprintFactor;
         }
 
         if (Input.GetKey(KeyCode.D))
@@ -52,8 +92,10 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("Playing East assets");
             p_anim_controller.Play("east_walk", 0);
             face_dir = direction.East;
+            movement = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);
+            transform.position += movement * Time.deltaTime * sprintFactor;
         }
-
+        // Determine and display idle state if there is no input.
         if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
         {
             if (face_dir == direction.North) { p_anim_controller.Play("north_idle", 0, 0f); }
@@ -61,6 +103,8 @@ public class PlayerScript : MonoBehaviour
             if (face_dir == direction.South) { p_anim_controller.Play("south_idle", 0, 0f); }
             if (face_dir == direction.East) { p_anim_controller.Play("east_idle", 0, 0f); }
         }
+
+        sprintFactor = sprintFactor > 1.0f ? 1.0f : 1.0f;
 
     }
 }
