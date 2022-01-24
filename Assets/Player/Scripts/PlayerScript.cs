@@ -22,12 +22,16 @@ public class PlayerScript : MonoBehaviour
 
 
 
-    // Physics and control fields
-    Vector3 movement = new Vector3(0.0f, 0.0f, 0.0f);
-    Rigidbody2D p_physics;
-    bool obeysGravity;
-    float sprintFactor = 1.0f;
-
+    /* 
+     * 
+     * Physics and control fields
+     * 
+     */
+    Vector3 movement = new Vector3(0.0f, 0.0f, 0.0f);   // Stores velocity data for a 2D plane (technically 3D but ignoring Z-axis).
+    Rigidbody2D p_physics;                              // RigidBody component, this is used to call the physics engine.
+    bool obeysGravity;                                  // Determines if player obeys gravity.
+    float sprintFactor = 1.0f;                          // Controls how fast sprinting is for the player. 1 = player is not sprinting. 
+        
     private enum direction : byte
     {
         North,
@@ -104,6 +108,7 @@ public class PlayerScript : MonoBehaviour
             if (face_dir == direction.East) { p_anim_controller.Play("east_idle", 0, 0f); }
         }
 
+        // Reset sprint factor to 1.0 if it's above 1.0
         sprintFactor = sprintFactor > 1.0f ? 1.0f : 1.0f;
 
     }
