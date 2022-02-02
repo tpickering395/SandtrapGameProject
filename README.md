@@ -1,4 +1,4 @@
-2DGameProject {#mainpage} 
+2DGameProject
 =====
 
 (WIP) Repository for version-control of 2D Game Project under development.
