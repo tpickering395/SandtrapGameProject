@@ -25,11 +25,11 @@ Stories brainstormed and scrapped from previous iteration.
 ### Technical Roadmap 
 
 
-* [ ] Become familiar with Unity toolset and physics engine.
+* [x] Become familiar with Unity toolset and physics engine.
 
-* [ ] Develop rudimentary player character, complete with sprite, idle and active states.
+* [x] Develop rudimentary player character, complete with sprite, idle and active states.
 
-* [ ] Create a basic tilemap for feature and unit testing, optimally would include as varied physics sandboxing as can be present (i.e. round corners, sharp corners, moving (?) parts)
+* [x] Create a basic tilemap for feature and unit testing, optimally would include as varied physics sandboxing as can be present (i.e. round corners, sharp corners, moving (?) parts)
 
 * [ ] Procure Copyright/royalty free sound materials, or create them.
 
