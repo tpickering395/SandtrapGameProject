@@ -21,8 +21,8 @@ public class ItemDatabase : MonoBehaviour
             Debug.Log(database[1].value);
             Debug.Log("\n");
             Debug.Log(database[1].stats.decay);
-            Debug.Log("\n");
-            Debug.Log(database[1].stats.Count);
+         // Debug.Log("\n");
+         // Debug.Log(database[1].stats.Count);
         }
         else
         {
