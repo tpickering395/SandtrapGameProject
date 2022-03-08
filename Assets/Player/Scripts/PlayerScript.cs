@@ -19,7 +19,7 @@ public class PlayerScript : MonoBehaviour
      * -Thomas Pickering
      */
     [SerializeField] private Animator p_anim_controller;
-
+    [SerializeField] private InventorySystem p_inventory_handler;
 
 
     /* 

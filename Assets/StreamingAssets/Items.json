@@ -1,0 +1,31 @@
+[
+  {
+    "id": 0,
+    "displayName": "Onigiri",
+    "value": 3,
+    "stats": {
+      "strength": 2,
+      "nutrition": 5,
+      "decay": 50
+    },
+    "description": "A riceball with just the right amount of that homemade feel.",
+    "stackable": false,
+    "rarity": 1,
+    "slug": "rice_ball"
+
+  },
+  {
+    "id": 1,
+    "displayName": "Soy Sauce",
+    "value": 9,
+    "stats": {
+      "strength": 1,
+      "nutrition": 2,
+      "decay": 80
+    },
+    "description": "A bottle of soy sauce, perfect for crafting tasty meals.",
+    "stackable": true,
+    "rarity": 1,
+    "slug": "soy_bottle"
+  }
+]
