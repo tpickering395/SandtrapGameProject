@@ -1,4 +1,4 @@
-For the Junior Programmers, if your build doesn't work after pulling the commit that includes the newly included JSON library then please follow these instructions:
+For the Junior Programmers, if your build doesn't work after pulling the commit that contains the newly included JSON library then please follow these instructions:
 
 ### Instructions
 
