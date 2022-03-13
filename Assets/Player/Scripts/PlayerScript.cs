@@ -21,7 +21,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Animator p_anim_controller;
     [SerializeField] private InventorySystem p_inventory_handler;
 
-
+    
     /* 
      * 
      * Physics and control fields
@@ -31,7 +31,13 @@ public class PlayerScript : MonoBehaviour
     Rigidbody2D p_physics;                              // RigidBody component, this is used to call the physics engine.
     bool obeysGravity;                                  // Determines if player obeys gravity.
     float sprintFactor = 1.0f;                          // Controls how fast sprinting is for the player. 1 = player is not sprinting. 
-        
+
+
+    public int p_health { get; private set; }
+    public int p_regen_factor { get; private set; }
+
+
+
     private enum direction : byte
     {
         North,

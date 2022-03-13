@@ -17,9 +17,9 @@ Stories brainstormed and scrapped from previous iteration.
 
 ### General Roadmap
 
-* [ ] Establish story    
+* [x] Establish story    
 
-* [ ] Ensure all developers are familiar with relevant tools and the concept of version controlling (Git/github, unity, creative commons usage).
+* [x] Ensure all developers are familiar with relevant tools and the concept of version controlling (Git/github, unity, creative commons usage).
 
 
 ### Technical Roadmap 
@@ -31,11 +31,11 @@ Stories brainstormed and scrapped from previous iteration.
 
 * [x] Create a basic tilemap for feature and unit testing, optimally would include as varied physics sandboxing as can be present (i.e. round corners, sharp corners, moving (?) parts)
 
-* [ ] Procure Copyright/royalty free sound materials, or create them.
+* [ ] Procure Copyright/royalty free sound materials, or create them. (carried over to next roadmap)
 
-* [ ] Demo these audio assets.
+* [ ] Demo these audio assets. (carried over to next roadmap)
 
-* [ ] Brainstorm ideas for the inventory, item, and customization systems.
+* [x] Brainstorm ideas for the inventory, item, and customization systems.
 
 
 ### Developers:
