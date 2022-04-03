@@ -7,6 +7,7 @@ public class ItemDatabase : MonoBehaviour
 {
     private string itemsPath;
     private List<Item> database = new List<Item>();
+    private Dictionary<int, Item> lookup_table = new Dictionary<int, Item>();   // Used for O(1) lookup time when checking if an item exists in the database.
     private JsonData itemData;
 
     void Start()
@@ -21,22 +22,51 @@ public class ItemDatabase : MonoBehaviour
             Debug.Log(database[1].value);
             Debug.Log("\n");
             Debug.Log(database[1].stats.decay);
-         // Debug.Log("\n");
-         // Debug.Log(database[1].stats.Count);
+
+            Debug.Log($"\n \nOutput of Lookup Table initialization: Size: {lookup_table.Count} \nKeys: {lookup_table.Keys}\n Values: {lookup_table.Values}\n");
+            // Debug.Log("\n");
+            // Debug.Log(database[1].stats.Count);
         }
         else
         {
             Debug.Log($"Database Initialization either failed or could not find item JSON file: \nJSON Detected: {File.Exists(itemsPath)}\nDatabase Count: {database.Count}");
+            Debug.Log($"\n \nOutput of Lookup Table initialization: Size: {lookup_table.Count} \nKeys: {lookup_table.Keys}\n Values: {lookup_table.Values}\n");
         }
 
     }
 
+
     bool DatabaseInit()
+    {
+        return DatabaseMap() && InitializeLookupTable();
+
+    }
+
+    bool DatabaseMap()
     {
         database = JsonMapper.ToObject<List<Item>>(File.ReadAllText(itemsPath));
         return database.Count > 0 ? true : false;
     }
+    
+    bool InitializeLookupTable()
+    {
+        for(int i = 0; i < database.Count; i++)
+        {
+            lookup_table.Add(database[i].id, database[i]);      // Attach the ID as a key to the item data
+            database[i].initializeSpritePath();
+        }
 
+        return lookup_table.Count > 0 ? true : false;
+    }
+    public Item getItemByID(int id)
+    {
+        Item temp;
+        if(lookup_table.TryGetValue(id, out temp))          // Attempt lookup of the item.
+        {
+            return temp;
+        }
+        return null;
+    }
 
 }
 
@@ -52,7 +82,7 @@ public class ItemDatabase : MonoBehaviour
  *   "description": "A bottle of soy sauce, perfect for crafting tasty meals.",
  *   "stackable": true,
  *   "rarity": 1,
- *   "slug": "soy_bottle"
+ *   "slug": "soy"
  * 
  */
 
@@ -72,7 +102,7 @@ public class Item
     public bool stackable { get; set; }
     public int rarity { get; set; }
     public string slug { get; set; }
-
+    public Sprite sprite { get; set; }
 
     public Item(int id, string name, int value)
     {
@@ -84,5 +114,11 @@ public class Item
     public Item()
     {
         this.id = int.MinValue;
+    }
+
+    public bool initializeSpritePath()
+    {
+        this.sprite = Resources.Load<Sprite>("Sprites/Items/" + slug);
+        return sprite != null ? true : false;
     }
 }

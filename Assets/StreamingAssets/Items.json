@@ -11,8 +11,7 @@
     "description": "A riceball with just the right amount of that homemade feel.",
     "stackable": false,
     "rarity": 1,
-    "slug": "rice_ball"
-
+    "slug": "onigiri"
   },
   {
     "id": 1,
@@ -26,6 +25,6 @@
     "description": "A bottle of soy sauce, perfect for crafting tasty meals.",
     "stackable": true,
     "rarity": 1,
-    "slug": "soy_bottle"
+    "slug": "soy"
   }
 ]
