@@ -65,7 +65,7 @@ public class PlayerScript : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.LeftShift))
         {
-            sprintFactor = 2.0f;
+            sprintFactor = 20.0f;
         }
 
         // Look for WASD input and act on that context.
