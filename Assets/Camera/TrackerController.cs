@@ -8,9 +8,14 @@ public class TrackerController : MonoBehaviour
     public float updateRate = 3;
     public Vector2 trackingOffset;
     private Vector3 offset;
+    GlobalVars instance = GlobalVars.Instance;
     // Start is called before the first frame update
     void Start()
     {
+        if(instance.debug)
+        {
+
+        }
         offset = (Vector3)trackingOffset;
         offset.z = transform.position.z - playerPosition.position.z;
     }

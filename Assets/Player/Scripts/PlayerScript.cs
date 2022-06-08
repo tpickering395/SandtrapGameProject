@@ -29,7 +29,7 @@ public class PlayerScript : MonoBehaviour
      */
     Vector3 movement = new Vector3(0.0f, 0.0f, 0.0f);   // Stores velocity data for a 2D plane (technically 3D but ignoring Z-axis).
     Rigidbody2D p_physics;                              // RigidBody component, this is used to call the physics engine.
-    bool obeysGravity;                                  // Determines if player obeys gravity.
+    bool obeysGravity;                                  // Determines if player obeys gravity. To-be-used.
     float sprintFactor = 1.0f;                          // Controls how fast sprinting is for the player. 1 = player is not sprinting. 
 
 

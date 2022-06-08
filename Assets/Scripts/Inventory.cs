@@ -14,13 +14,18 @@ public class Inventory : MonoBehaviour
     public GameObject inventoryItem;
 
     int maxSlots;
-    int debug = 0;
+
+    GlobalVars instance;
+    readonly int debug = 0;
 
     public List<Item> itemList = new List<Item>();
     public List<GameObject> slots = new List<GameObject>();
     public Dictionary<int, string> lookuptable = new Dictionary<int, string>();
     void Start()
     {
+
+        instance = GlobalVars.Instance;
+
         db = GetComponent<ItemDatabase>();
 
         maxSlots = 20;
@@ -34,18 +39,21 @@ public class Inventory : MonoBehaviour
             slots[i].transform.SetParent(slotUI.transform);
             slots[i].transform.localScale = new Vector3(1, 1, 1);
         }
-        Debug.Log("Attempting add function...");
-        Debug.Log($"Debug = {debug}");
-        AddItem(1);
-        Debug.Log($"Debug = {debug}");
-        AddItem(1);
-        Debug.Log($"Debug = {debug}");
-        AddItem(1);
-        Debug.Log($"Debug = {debug}");
-        Debug.Log("Add called.");
-        Debug.Log("Attempting secondary addition...");
-        AddItem(0);
-        Debug.Log("Check Visually!");
+        if (instance.debug)
+        {
+            Debug.Log("Attempting add function...");
+            Debug.Log($"Debug = {debug}");
+            AddItem(1);
+            Debug.Log($"Debug = {debug}");
+            AddItem(1);
+            Debug.Log($"Debug = {debug}");
+            AddItem(1);
+            Debug.Log($"Debug = {debug}");
+            Debug.Log("Add called.");
+            Debug.Log("Attempting secondary addition...");
+            AddItem(0);
+            Debug.Log("Check Visually!");
+        }
     }
 
     public void AddItem(int id)

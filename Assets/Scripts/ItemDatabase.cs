@@ -10,6 +10,8 @@ public class ItemDatabase : MonoBehaviour
     private Dictionary<int, Item> lookup_table = new Dictionary<int, Item>();   // Used for O(1) lookup time when checking if an item exists in the database.
     private JsonData itemData;
 
+    private GlobalVars instance = GlobalVars.Instance;
+
     void Start()
     {
         itemsPath = Application.dataPath + "/StreamingAssets/Items.json";
@@ -18,19 +20,25 @@ public class ItemDatabase : MonoBehaviour
         // itemData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/Items.json"));
         if (File.Exists(itemsPath) && DatabaseInit())
         {
-            Debug.Log($"Database Initialized with {database.Count} items...");
-            Debug.Log(database[1].value);
-            Debug.Log("\n");
-            Debug.Log(database[1].stats.decay);
+            if (instance.debug)
+            {
+                Debug.Log($"Database Initialized with {database.Count} items...");
+                Debug.Log(database[1].value);
+                Debug.Log("\n");
+                Debug.Log(database[1].stats.decay);
 
-            Debug.Log($"\n \nOutput of Lookup Table initialization: Size: {lookup_table.Count} \nKeys: {lookup_table.Keys}\n Values: {lookup_table.Values}\n");
-            // Debug.Log("\n");
-            // Debug.Log(database[1].stats.Count);
+                Debug.Log($"\n \nOutput of Lookup Table initialization: Size: {lookup_table.Count} \nKeys: {lookup_table.Keys}\n Values: {lookup_table.Values}\n");
+                // Debug.Log("\n");
+                // Debug.Log(database[1].stats.Count);
+            }
         }
         else
         {
-            Debug.Log($"Database Initialization either failed or could not find item JSON file: \nJSON Detected: {File.Exists(itemsPath)}\nDatabase Count: {database.Count}");
-            Debug.Log($"\n \nOutput of Lookup Table initialization: Size: {lookup_table.Count} \nKeys: {lookup_table.Keys}\n Values: {lookup_table.Values}\n");
+            if (instance.debug)
+            {
+                Debug.Log($"Database Initialization either failed or could not find item JSON file: \nJSON Detected: {File.Exists(itemsPath)}\nDatabase Count: {database.Count}");
+                Debug.Log($"\n \nOutput of Lookup Table initialization: Size: {lookup_table.Count} \nKeys: {lookup_table.Keys}\n Values: {lookup_table.Values}\n");
+            }
         }
 
     }
