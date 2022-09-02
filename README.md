@@ -27,11 +27,11 @@ This should be helpful in keeping tasks in mind, organized, and clear on who's a
 
 ### General Roadmap
 
-* [ ] Create game title.
+* [x] Create game title.
 
-* [ ] Create player assets, such as the player sprite, from scratch.
+* [x] Create player assets, such as the player sprite, from scratch.
 
-* [ ] Finalize story and examine it for pacing and dividing it into chapters ("levels" essentially)
+* [x] Finalize story and examine it for pacing and dividing it into chapters ("levels" essentially)
 
 * [ ] Research feasability of using 3D elements such as a town/hub that is rendered in 3D.
 
@@ -40,7 +40,7 @@ This should be helpful in keeping tasks in mind, organized, and clear on who's a
 
 ### Technical Roadmap 
 
-* [ ] Replace current placeholder tiles/textures with thematic ones that make sense with the current iteration of the story (sandstone, desert-esque)
+* [x] Replace current placeholder tiles/textures with thematic ones that make sense with the current iteration of the story (sandstone, desert-esque)
 
 * [ ] Complete glue between inventory back-end and the front-end.
 
@@ -56,7 +56,8 @@ This should be helpful in keeping tasks in mind, organized, and clear on who's a
 * [ ] Demo these audio assets.
 
 
-
+###### CICD and WebGL
+* [ ] Set up webserver with continuous integration and deployment for the web version of the game.
 
 ### Developers:
 
