@@ -11,6 +11,7 @@ public class InventorySystem : MonoBehaviour
     {
         inventory = new List<InventoryItem>();
         m_itemDictionary = new Dictionary<InventoryItemData, InventoryItem>();
+        Debug.Log("Inventory containers loaded.");
     }
 
     public InventoryItem Get(InventoryItemData referenceData)
@@ -21,6 +22,7 @@ public class InventorySystem : MonoBehaviour
         }
         return null;
     }
+
     public void Add(InventoryItemData referenceData)
     {
         if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value))
@@ -48,7 +50,6 @@ public class InventorySystem : MonoBehaviour
 
         }
     }
-    
 
     // Start is called before the first frame update
     void Start()
