@@ -11,8 +11,10 @@ public sealed class GlobalVars : MonoBehaviour {
 
     [SerializeField] public bool debug = false;
     [SerializeField] public bool god = false;
-    [SerializeField] public int frameRate = 60;
+    [SerializeField] public int  frameRate = 60;
     [SerializeField] public bool followChar = true;
+    [SerializeField] public bool vSync = false;
+    [SerializeField] public bool fullscreen = false;
 
     private GlobalVars() {}
     private static readonly object Locker = new object();
@@ -31,6 +33,19 @@ public sealed class GlobalVars : MonoBehaviour {
             }
         }
     }
-       
-    
+
+    void OnGraphicsChange()
+    {
+        // TODO: Update values for graphics parameters.
+    }
+
+    void OnResolutionChange()
+    {
+        // TODO: Implement this.
+    }
+
+    void SaveSettings()
+    {
+        // TODO: Implement some json or key-value save file.
+    }
 }
