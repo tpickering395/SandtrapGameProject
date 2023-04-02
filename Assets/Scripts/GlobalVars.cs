@@ -16,6 +16,17 @@ public sealed class GlobalVars : MonoBehaviour {
     [SerializeField] public bool vSync = false;
     [SerializeField] public bool fullscreen = false;
 
+
+    /* Game Default variables are declared here.
+     * This will be mainly used on first load (i.e. games without save files)
+     * 
+     * These should not be serialized to the editor.
+     * Keep this intact.
+     */
+    public float def_max_health = 100f;
+    public float def_regen_factor = 0.6f;
+    public float def_max_energy = 50f;
+
     private GlobalVars() {}
     private static readonly object Locker = new object();
     private static GlobalVars instance = null;

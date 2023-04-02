@@ -21,6 +21,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Animator p_anim_controller;
     [SerializeField] private InventorySystem p_inventory_handler;
 
+    GlobalVars instance;
     
     /* 
      * 
@@ -32,12 +33,35 @@ public class PlayerScript : MonoBehaviour
     bool obeysGravity;                                  // Determines if player obeys gravity. To-be-used.
     float sprintFactor = 1.0f;                          // Controls how fast sprinting is for the player. 1 = player is not sprinting. 
 
+    /*
+     * Player Properties
+     * Health, Regeneration, etc.
+     */
+    private float p_health;
 
-    public int p_health { get; private set; }
-    public int p_regen_factor { get; private set; }
+    public float Health {
+        get { return p_health; }
+        private set { p_health = value; }
+    }
+
+    private float p_max_health;
+
+    public float MaxHealth
+    {
+        get { return p_max_health; }
+        private set { p_max_health = value; }
+    }
 
 
+    private float p_regen_factor;
 
+    public float RegenModifier { 
+        get { return p_regen_factor; }
+        private set { p_regen_factor = value; }
+    }
+
+
+    // Movement data
     private enum direction : byte
     {
         North,
@@ -49,6 +73,8 @@ public class PlayerScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        instance = GlobalVars.Instance;
+
         p_anim_controller = GetComponent<Animator>();
         
         // [TENTATIVE]: Player will not be under effect of gravity except maybe for special circumstances.
@@ -58,6 +84,11 @@ public class PlayerScript : MonoBehaviour
 
         // [TENTATIVE]: Idle or starting face direction is South.
         face_dir = direction.South;
+
+        // Stat intialization.
+        p_max_health = instance.def_max_health;
+        p_health = p_max_health;
+        p_regen_factor = instance.def_regen_factor;
     }
 
     // Update is called once per frame
