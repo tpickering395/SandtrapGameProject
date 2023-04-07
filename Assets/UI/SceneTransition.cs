@@ -27,4 +27,11 @@ public class SceneTransition : MonoBehaviour
         Debug.Log("Attempting to load next Scene...");
         SceneManager.LoadScene(_nextScenePath, LoadSceneMode.Single);
     }
+
+    public static void LoadSceneSwitch(string scenePath)
+    {
+        Debug.Log("Loading scene: " + scenePath);
+
+        SceneManager.LoadScene(scenePath, LoadSceneMode.Single);
+    }
 }

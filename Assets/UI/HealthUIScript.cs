@@ -6,23 +6,43 @@ using UnityEngine.UI;
 public class HealthUIScript : MonoBehaviour
 {
     private GlobalVars instance;
-   
+
+    GameObject player;
+
+    PlayerScript playerStats;
+
     public float max_health;
+
+    public float max_mana;
+
+    [SerializeField]
+    public float current_mana;
 
     [SerializeField]
     public float current_health;
 
     private Image healthBar;
+    private Image manaBar;
     // Start is called before the first frame update
     void Start()
     {
-        GameObject player = GameObject.Find("Player");
+        player = GameObject.Find("Player");
+
         instance = GlobalVars.Instance;
-        max_health = player.GetComponent<PlayerScript>().MaxHealth;
-        current_health = player.GetComponent<PlayerScript>().Health;
 
-        healthBar = GetComponent<Image>();
+        playerStats = player.GetComponent<PlayerScript>();
 
+        // Get player stats.
+        max_health = playerStats.MaxHealth;
+        current_health = playerStats.Health;
+        max_mana = playerStats.MaxMana;
+        current_mana = playerStats.Mana;
+
+        // Get UI markers.
+        healthBar = GameObject.Find("Health").GetComponent<Image>();
+        manaBar = GameObject.Find("ManaBar").GetComponent<Image>();
+
+        Debug.Log("Manabar status initial: " + manaBar.fillAmount);
         Debug.Log("Health UI: healthbar status: " + (healthBar != null));
         Debug.Log("Player Health status: " + current_health + " " + max_health);
 
@@ -31,6 +51,12 @@ public class HealthUIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Update stats
+        max_health = playerStats.MaxHealth;
+        current_health = playerStats.Health;
+        max_mana = playerStats.MaxMana;
+        current_mana = playerStats.Mana;
+
         // Update Health bar fill.
         float healthPercent = current_health / max_health;
         healthBar.fillAmount = healthPercent;
@@ -60,6 +86,24 @@ public class HealthUIScript : MonoBehaviour
         {
             Debug.Log("Color values = " + r + " " + g + " " + b + " ");
             Debug.Log("Health values = " + current_health + " " + max_health + " " + healthPercent);
+
+            Debug.Log("Mana UI: Manabar status: " + (manaBar != null));
+            Debug.Log("Player Mana status: " + current_mana + " " + max_mana);
+
+            Debug.Log("ManaBar status: " + manaBar.fillAmount);
+        }
+
+        manaBar.fillAmount = current_mana / max_mana;
+
+        if (Input.GetKey(KeyCode.RightShift))
+        {
+            Debug.Log("Color values = " + r + " " + g + " " + b + " ");
+            Debug.Log("Health values = " + current_health + " " + max_health + " " + healthPercent);
+
+            Debug.Log("Mana UI: Manabar status: " + (manaBar != null));
+            Debug.Log("Player Mana status: " + current_mana + " " + max_mana);
+
+            Debug.Log("ManaBar status: " + manaBar.fillAmount);
         }
     }
 }

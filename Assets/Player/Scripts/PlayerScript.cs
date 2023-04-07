@@ -60,6 +60,22 @@ public class PlayerScript : MonoBehaviour
         private set { p_regen_factor = value; }
     }
 
+    private float p_mana;
+
+    public float Mana
+    {
+        get { return p_mana; }
+        private set { p_mana = value; }
+    }
+
+    private float p_max_mana;
+
+    public float MaxMana
+    {
+        get { return p_max_mana; }
+        private set { p_max_mana = value; }
+    }
+
 
     // Movement data
     private enum direction : byte
@@ -89,14 +105,27 @@ public class PlayerScript : MonoBehaviour
         p_max_health = instance.def_max_health;
         p_health = p_max_health;
         p_regen_factor = instance.def_regen_factor;
+
+        p_max_mana = instance.def_max_energy;
+        p_mana = p_max_mana;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.LeftShift))
+        if(Input.GetKey(KeyCode.LeftShift) && p_mana > 5)
         {
             sprintFactor = 20.0f;
+
+            Debug.Log("P_mana before: " + p_mana); 
+            p_mana -= 3f * Time.deltaTime;
+
+            Debug.Log("P_mana after: " + p_mana);
+        }
+        else
+        {
+            p_mana += 2 * Time.deltaTime;
         }
 
         // Look for WASD input and act on that context.
@@ -148,5 +177,17 @@ public class PlayerScript : MonoBehaviour
         // Reset sprint factor to 1.0 if it's above 1.0
         sprintFactor = sprintFactor > 1.0f ? 1.0f : 1.0f;
 
+
+        // DEBUG KEYS
+
+        if(p_health <= 0)
+        {
+            SceneTransition.LoadSceneSwitch("Scenes/MainMenu");
+        }
+
+        if(Input.GetKey(KeyCode.RightShift))
+        {
+            p_health -= Time.deltaTime * 5;
+        }
     }
 }
