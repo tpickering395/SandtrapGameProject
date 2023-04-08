@@ -42,10 +42,6 @@ public class HealthUIScript : MonoBehaviour
         healthBar = GameObject.Find("Health").GetComponent<Image>();
         manaBar = GameObject.Find("ManaBar").GetComponent<Image>();
 
-        Debug.Log("Manabar status initial: " + manaBar.fillAmount);
-        Debug.Log("Health UI: healthbar status: " + (healthBar != null));
-        Debug.Log("Player Health status: " + current_health + " " + max_health);
-
     }
 
     // Update is called once per frame
@@ -82,7 +78,7 @@ public class HealthUIScript : MonoBehaviour
 
         healthBar.color = new Color(r, g, b);
 
-        if(Input.GetKey(KeyCode.RightShift))
+       /* if(Input.GetKey(KeyCode.RightShift))
         {
             Debug.Log("Color values = " + r + " " + g + " " + b + " ");
             Debug.Log("Health values = " + current_health + " " + max_health + " " + healthPercent);
@@ -91,19 +87,9 @@ public class HealthUIScript : MonoBehaviour
             Debug.Log("Player Mana status: " + current_mana + " " + max_mana);
 
             Debug.Log("ManaBar status: " + manaBar.fillAmount);
-        }
+        }*/
 
         manaBar.fillAmount = current_mana / max_mana;
 
-        if (Input.GetKey(KeyCode.RightShift))
-        {
-            Debug.Log("Color values = " + r + " " + g + " " + b + " ");
-            Debug.Log("Health values = " + current_health + " " + max_health + " " + healthPercent);
-
-            Debug.Log("Mana UI: Manabar status: " + (manaBar != null));
-            Debug.Log("Player Mana status: " + current_mana + " " + max_mana);
-
-            Debug.Log("ManaBar status: " + manaBar.fillAmount);
-        }
     }
 }

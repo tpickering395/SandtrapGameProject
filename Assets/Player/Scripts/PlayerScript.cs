@@ -20,6 +20,9 @@ public class PlayerScript : MonoBehaviour
      */
     [SerializeField] private Animator p_anim_controller;
     [SerializeField] private InventorySystem p_inventory_handler;
+    [SerializeField] private Camera playerCam;
+    [SerializeField] private GameObject spell;
+    [SerializeField] private float castCooldown;
 
     GlobalVars instance;
     
@@ -118,10 +121,8 @@ public class PlayerScript : MonoBehaviour
         {
             sprintFactor = 20.0f;
 
-            Debug.Log("P_mana before: " + p_mana); 
             p_mana -= 3f * Time.deltaTime;
 
-            Debug.Log("P_mana after: " + p_mana);
         }
         else
         {
@@ -130,9 +131,7 @@ public class PlayerScript : MonoBehaviour
 
         // Look for WASD input and act on that context.
         if (Input.GetKey(KeyCode.W))
-        {
-            
-            Debug.Log("Playing North assets");
+        { 
             p_anim_controller.Play("north_walk", 0);                        // Play animation to make sprite face north.
             face_dir = direction.North;
             movement = new Vector3(0.0f, Input.GetAxis("Vertical"), 0.0f);
@@ -141,7 +140,6 @@ public class PlayerScript : MonoBehaviour
         // Same process for the other three Key reading If-statements.
         if (Input.GetKey(KeyCode.A))
         {
-            Debug.Log("Playing West assets");
             p_anim_controller.Play("west_walk", 0);
             face_dir = direction.West;
             movement = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);
@@ -150,7 +148,6 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S))
         {
-            Debug.Log("Playing South assets");
             p_anim_controller.Play("south_walk", 0);
             face_dir = direction.South;
             movement = new Vector3(0.0f, Input.GetAxis("Vertical"), 0.0f);
@@ -159,7 +156,6 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
         {
-            Debug.Log("Playing East assets");
             p_anim_controller.Play("east_walk", 0);
             face_dir = direction.East;
             movement = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);
@@ -177,10 +173,36 @@ public class PlayerScript : MonoBehaviour
         // Reset sprint factor to 1.0 if it's above 1.0
         sprintFactor = sprintFactor > 1.0f ? 1.0f : 1.0f;
 
+        // ATTACK INPUTS
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            if (p_mana > 52.9f && castCooldown <= 0f)
+            {
+                Vector3 aimVector = playerCam.ScreenToWorldPoint(Input.mousePosition);
+                GameObject attackProjectile;
+                attackProjectile = Instantiate(spell, transform.position, transform.rotation);
+                Rigidbody2D projPhysics = attackProjectile.GetComponent<Rigidbody2D>();
+                FireballScript controller = attackProjectile.GetComponent<FireballScript>();
+                controller.owner = "Player";
+                aimVector.z = 0;
+
+                Vector2 direction = (Vector2)(aimVector - transform.position);
+                direction.Normalize();
+                projPhysics.velocity = direction * 20;
+
+                p_mana -= 20;
+                castCooldown = 3.0f;
+            }
+        }
+
+        if(castCooldown > 0f)
+        {
+            castCooldown -= Time.deltaTime;
+        }
 
         // DEBUG KEYS
 
-        if(p_health <= 0)
+        if (p_health <= 0)
         {
             SceneTransition.LoadSceneSwitch("Scenes/MainMenu");
         }
@@ -189,5 +211,11 @@ public class PlayerScript : MonoBehaviour
         {
             p_health -= Time.deltaTime * 5;
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        p_health -= damage;
+        Debug.Log("Player took " + damage + " damage, health now: " + p_health);
     }
 }

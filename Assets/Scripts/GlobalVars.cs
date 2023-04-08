@@ -25,7 +25,7 @@ public sealed class GlobalVars : MonoBehaviour {
      */
     public float def_max_health = 100f;
     public float def_regen_factor = 0.6f;
-    public float def_max_energy = 50f;
+    public float def_max_energy = 90f;
 
     private GlobalVars() {}
     private static readonly object Locker = new object();
