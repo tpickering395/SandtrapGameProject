@@ -70,13 +70,13 @@ public class RadialObjectDetection : MonoBehaviour
         }
         else
         {
-            triggerTarget = null;
+            TriggerTarget = null;
             Debug.Log("Detected nothing");
         }
     }
 
     // Debug Overlay
-    private void OnDrawGizmos()
+    void OnDrawGizmos()
     {
         if(debug_mode && rCastOrigin != null)
         {
@@ -85,7 +85,7 @@ public class RadialObjectDetection : MonoBehaviour
             {
                 Gizmos.color = wfaggroColor;
             }
-            Gizmos.DrawWireSphere(new Vector3(rCastOrigin.position.x, rCastOrigin.position.y, -1), castRadius);
+            Gizmos.DrawWireSphere(new Vector3(rCastOrigin.position.x, rCastOrigin.position.y, 0), castRadius);
         }
     }
 }
