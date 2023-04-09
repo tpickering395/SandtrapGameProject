@@ -84,6 +84,7 @@ public class RadialObjectDetection : MonoBehaviour
             if(ObjectDetected)
             {
                 Gizmos.color = wfaggroColor;
+                Gizmos.DrawLine(new Vector3(rCastOrigin.position.x, rCastOrigin.position.y, 0), TriggerTarget.transform.position);
             }
             Gizmos.DrawWireSphere(new Vector3(rCastOrigin.position.x, rCastOrigin.position.y, 0), castRadius);
         }
