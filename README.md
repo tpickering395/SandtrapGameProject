@@ -5,19 +5,23 @@ Repository for version-control of a 2D Game Project under development.
 
 A Work-in-Progress game created for fun and learning.
 
-### Update 0.01c
+### Update 0.01d
 
-* Basic game mechanics conceptualized.
+* Main Character sprite design completed
 
-* Game story/lore written (mostly).
+* Game level-building in-progress.
 
-* Tilemap created and standards (which layer is meant for what) enumerated.
+* Procedural Generation (Random-walk) implemented.
 
-* Inventory framework nearly complete and connection to front-end is under development.
+* Basic attacks implemented
 
-* In-game items are being tested as loaded from a JSON file and initialized according to the JSON data.
+* Basic Enemy "fire" sprite created.
 
-* LitJSON library is now being employed for parsing aforementioned JSON data. (Instructions for Junior devs to apply this change in Unity can be found in "notes_to_dev.md" in the root directory)
+* Basic Enemy AI implemented.
+  
+* Health bar and Mana bar implemented.
+
+* Removed current item framework in favor of a custom rewrite.
 
 ## Github Project Board
 
@@ -41,6 +45,8 @@ This should be helpful in keeping tasks in mind, organized, and clear on who's a
 ### Technical Roadmap 
 
 * [x] Replace current placeholder tiles/textures with thematic ones that make sense with the current iteration of the story (sandstone, desert-esque)
+
+* [ ] Create interface for customizing controls (and accompanying custom back-end)
 
 * [ ] Complete glue between inventory back-end and the front-end.
 
