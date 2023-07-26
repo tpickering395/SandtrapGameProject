@@ -23,9 +23,17 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Camera playerCam;
     [SerializeField] private GameObject spell;
     [SerializeField] private float castCooldown;
+    [SerializeField] private GameObject aimingLineContainer;
 
     GlobalVars instance;
-    
+
+    private LineRenderer aimingLineComponent;
+    Vector3 lineOriginVertex = new Vector3();
+    private Material aimingTexture;
+
+    // TODO: Streamline initialization of this List and serialize it in a separate file.
+    List<Material> aimingMats = new List<Material>(1);
+
     /* 
      * 
      * Physics and control fields
@@ -101,6 +109,10 @@ public class PlayerScript : MonoBehaviour
         p_physics.gravityScale = 0.0f;
         obeysGravity = false;
 
+        aimingLineComponent = aimingLineContainer.GetComponent<LineRenderer>();
+        aimingLineComponent.enabled = true;
+        aimingLineComponent.GetMaterials(aimingMats);
+
         // [TENTATIVE]: Idle or starting face direction is South.
         face_dir = direction.South;
 
@@ -170,6 +182,15 @@ public class PlayerScript : MonoBehaviour
             if (face_dir == direction.East) { p_anim_controller.Play("east_idle", 0, 0f); }
         }
 
+        if(aimingLineComponent.enabled)
+        {
+            lineOriginVertex = playerCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+            lineOriginVertex.z = 0; // Necessary since lines are rendered in 3D. Without this assignment of Z, the line will point "up" or "down" towards where Unity would think the mouse is in 3D, causing Tiling issues on the materials.
+            aimingLineComponent.SetPosition(0, this.transform.position);
+            aimingLineComponent.SetPosition(1, lineOriginVertex);
+            aimingMats[0].mainTextureScale = new Vector2(1, 1);
+        }
+
         // Reset sprint factor to 1.0 if it's above 1.0
         sprintFactor = sprintFactor > 1.0f ? 1.0f : 1.0f;
 
@@ -186,7 +207,7 @@ public class PlayerScript : MonoBehaviour
                 controller.owner = "Player";
                 aimVector.z = 0;
 
-                Vector2 direction = (Vector2)(aimVector - transform.position);
+                Vector2 direction = aimVector - transform.position;
                 direction.Normalize();
                 projPhysics.velocity = direction * 20;
 

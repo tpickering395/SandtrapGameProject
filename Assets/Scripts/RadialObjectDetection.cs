@@ -17,8 +17,6 @@ public class RadialObjectDetection : MonoBehaviour
         {
             triggerTarget = value;
             ObjectDetected = triggerTarget != null;
-            Debug.Log("Detection status changed: " + ObjectDetected);
-            Debug.Log("Trigger target null? " + triggerTarget == null);
         }
     }
 
@@ -71,7 +69,6 @@ public class RadialObjectDetection : MonoBehaviour
         else
         {
             TriggerTarget = null;
-            Debug.Log("Detected nothing");
         }
     }
 

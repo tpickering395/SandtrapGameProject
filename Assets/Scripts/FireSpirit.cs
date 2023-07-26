@@ -68,15 +68,16 @@ public class FireSpirit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(detector != null && detector.ObjectDetected)
+ /*       
+       if(detector != null && detector.ObjectDetected)
         {
             Debug.Log("No null on detector and objectDetected");
         }
-        if(Vector3.Distance(transform.position, detector.TriggerTarget.transform.position) > 3.5f)
+        if(detector != null && Vector3.Distance(transform.position, detector.TriggerTarget.transform.position) > 3.5f)
         {
             Debug.Log("Distance check cleared");
         }
-
+ */
         if (detector != null && detector.ObjectDetected && (Vector3.Distance(transform.position, detector.TriggerTarget.transform.position) > 3.5f) && moveAdjustDelay >= 0f)
         {
             var step = speed * Time.deltaTime;
