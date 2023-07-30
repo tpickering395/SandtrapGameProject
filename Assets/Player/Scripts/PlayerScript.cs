@@ -18,18 +18,23 @@ public class PlayerScript : MonoBehaviour
      * 
      * -Thomas Pickering
      */
+
     [SerializeField] private Animator p_anim_controller;
     [SerializeField] private InventorySystem p_inventory_handler;
     [SerializeField] private Camera playerCam;
     [SerializeField] private GameObject spell;
     [SerializeField] private float castCooldown;
     [SerializeField] private GameObject aimingLineContainer;
+    [SerializeField] public GameObject keybindobject;
+
+    KeyBindScript keybind;
 
     GlobalVars instance;
 
     private LineRenderer aimingLineComponent;
     Vector3 lineOriginVertex = new Vector3();
     private Material aimingTexture;
+    
 
     // TODO: Streamline initialization of this List and serialize it in a separate file.
     List<Material> aimingMats = new List<Material>(1);
@@ -102,8 +107,10 @@ public class PlayerScript : MonoBehaviour
     {
         instance = GlobalVars.Instance;
 
+        keybind = keybindobject.GetComponent<KeyBindScript>();
+
         p_anim_controller = GetComponent<Animator>();
-        
+
         // [TENTATIVE]: Player will not be under effect of gravity except maybe for special circumstances.
         p_physics = GetComponent<Rigidbody2D>();
         p_physics.gravityScale = 0.0f;
@@ -129,7 +136,9 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.LeftShift) && p_mana > 5)
+
+
+        if(Input.GetKey(keybind.keys["Dash"]) && p_mana > 5)
         {
             sprintFactor = 20.0f;
 
@@ -142,7 +151,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         // Look for WASD input and act on that context.
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(keybind.keys["Up"]))
         { 
             p_anim_controller.Play("north_walk", 0);                        // Play animation to make sprite face north.
             face_dir = direction.North;
@@ -150,7 +159,7 @@ public class PlayerScript : MonoBehaviour
             transform.position += movement * Time.deltaTime * sprintFactor;                // Actually move the sprite.
         }
         // Same process for the other three Key reading If-statements.
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(keybind.keys["Left"]))
         {
             p_anim_controller.Play("west_walk", 0);
             face_dir = direction.West;
@@ -158,7 +167,7 @@ public class PlayerScript : MonoBehaviour
             transform.position += movement * Time.deltaTime * sprintFactor;
         }
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(keybind.keys["Down"]))
         {
             p_anim_controller.Play("south_walk", 0);
             face_dir = direction.South;
@@ -166,7 +175,7 @@ public class PlayerScript : MonoBehaviour
             transform.position += movement * Time.deltaTime * sprintFactor;
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(keybind.keys["Right"]))
         {
             p_anim_controller.Play("east_walk", 0);
             face_dir = direction.East;
@@ -195,7 +204,7 @@ public class PlayerScript : MonoBehaviour
         sprintFactor = sprintFactor > 1.0f ? 1.0f : 1.0f;
 
         // ATTACK INPUTS
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(keybind.keys["Primary_Fire"]))
         {
             if (p_mana > 52.9f && castCooldown <= 0f)
             {
