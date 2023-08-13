@@ -19,6 +19,10 @@ public class PlayerScript : MonoBehaviour
      * -Thomas Pickering
      */
 
+    // Scene tools
+    public AudioSource channel;
+
+    // Player tools
     [SerializeField] private Animator p_anim_controller;
     [SerializeField] private InventorySystem p_inventory_handler;
     [SerializeField] private Camera playerCam;
@@ -222,6 +226,8 @@ public class PlayerScript : MonoBehaviour
 
                 p_mana -= 20;
                 castCooldown = 3.0f;
+
+
             }
         }
 

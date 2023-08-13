@@ -27,6 +27,10 @@ public sealed class GlobalVars : MonoBehaviour {
     public float def_regen_factor = 0.6f;
     public float def_max_energy = 90f;
 
+    public static AudioSource channel;
+    private static AudioClip[] clips;
+    private static Dictionary<string, AudioClip> soundLibrary = new Dictionary<string, AudioClip>();
+
     private GlobalVars() {}
     private static readonly object Locker = new object();
     private static GlobalVars instance = null;
@@ -45,6 +49,30 @@ public sealed class GlobalVars : MonoBehaviour {
         }
     }
 
+    private void Start()
+    {
+        clips = Resources.LoadAll<AudioClip>("Sounds");
+
+        foreach(var sound in clips)
+        {
+            soundLibrary.Add(sound.name, sound);
+        }
+
+        foreach (KeyValuePair<string, AudioClip> sound in soundLibrary)
+        {
+            Debug.Log("Name: " + sound.Key + " and object: " + (sound.Value != null));
+        }
+    }
+
+
+    public static void playSoundEvent(string name)
+    {
+        Debug.Log("Playing Sound Event: " + name);
+        AudioClip temp;
+        soundLibrary.TryGetValue(name, out temp);
+        channel.PlayOneShot(temp);
+    }
+
     void OnGraphicsChange()
     {
         // TODO: Update values for graphics parameters.
@@ -59,4 +87,9 @@ public sealed class GlobalVars : MonoBehaviour {
     {
         // TODO: Implement some json or key-value save file.
     }
+
+
+
+
+
 }

@@ -11,6 +11,7 @@ public class KeyBindScript : MonoBehaviour
 
     //create (default?) keybinds (subject to change)
 
+    // TODO: load Start controls from a file. (JSON)
     void Start()
     {
         keys.Add("Up", KeyCode.W);
@@ -25,10 +26,10 @@ public class KeyBindScript : MonoBehaviour
         keys.Add("Interact", KeyCode.F);
 
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    public void modControl(KeyCode something, string control)
     {
-        
+
     }
+
 }

@@ -10,11 +10,11 @@ public class FireballScript : MonoBehaviour
     public float timeout;
 
     public string owner;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
+    public AudioSource channel;
+
+    public AudioClip launch;
+    public AudioClip impact;
 
     // Update is called once per frame
     void Update()
@@ -37,6 +37,7 @@ public class FireballScript : MonoBehaviour
             PlayerScript ply = GameObject.Find("Player").GetComponent<PlayerScript>();
             ply.TakeDamage(damage);
             Debug.Log("fireball destroys itself to hitting player");
+            GlobalVars.playSoundEvent("fireball_cast");
             Destroy(gameObject);
         }
         else if (collider.CompareTag("Enemy") && owner != "Enemy")
@@ -44,6 +45,7 @@ public class FireballScript : MonoBehaviour
             FireSpirit fs = collider.gameObject.GetComponent<FireSpirit>();
             fs.TakeDamage(damage);
             Debug.Log("fireball destroys itself to hitting enemy");
+            GlobalVars.playSoundEvent("fireball_impact");
             Destroy(gameObject);
         }
 
