@@ -2,17 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType;
+public abstract class Item()
 {
-    Equipment,
-    Food,
-    Default
-}
-
-public abstract class Item : ScriptableObject
-{
+    public string displayName;
+    public Sprite icon;
     public GameObject prefab;
-    public ItemType itemName;
-    public int value;
-    public string description;
 }
