@@ -27,7 +27,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private GameObject aimingLineContainer;
     [SerializeField] public GameObject keybindobject;
 
-    KeyBindScript keybind;
+    KeyBindScriptTest keybind;
 
     GlobalVars instance;
 
@@ -107,7 +107,7 @@ public class PlayerScript : MonoBehaviour
     {
         instance = GlobalVars.Instance;
 
-        keybind = keybindobject.GetComponent<KeyBindScript>();
+        keybind = keybindobject.GetComponent<KeyBindScriptTest>();
 
         p_anim_controller = GetComponent<Animator>();
 
