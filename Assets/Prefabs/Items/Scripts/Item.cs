@@ -4,7 +4,9 @@ using UnityEngine;
 
 public abstract class Item()
 {
-    public string displayName;
-    public Sprite icon;
-    public GameObject prefab;
+    public int itemId;
+    public string itemName;
+    public Sprite itemIcon;
+    public bool shouldConvert;
+    public abstract int Use();
 }
