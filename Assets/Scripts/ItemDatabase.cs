@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+/*using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using LitJson;
@@ -76,7 +76,7 @@ public class ItemDatabase : MonoBehaviour
         return null;
     }
 
-}
+}*/
 
 /*  Example Item in JSON:
  *   "id": 1,
@@ -94,7 +94,11 @@ public class ItemDatabase : MonoBehaviour
  * 
  */
 
-public class Stats
+
+// [REMOVAL_MARK]
+// UPDATE 9/23/2023: This section is now deprecated and redundant. Marked for future removal
+
+/*public class Stats
 {
     public int strength { get; set; }
     public int nutrition { get; set; }
@@ -129,4 +133,4 @@ public class Item
         this.sprite = Resources.Load<Sprite>("Sprites/Items/" + slug);
         return sprite != null ? true : false;
     }
-}
+}*/
