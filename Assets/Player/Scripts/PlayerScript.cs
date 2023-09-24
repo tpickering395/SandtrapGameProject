@@ -101,7 +101,17 @@ public class PlayerScript : MonoBehaviour
         South,
         West
     }
+
+    private enum motion_state : byte
+    {
+        Dashing,
+        Walking,
+        Slow_Walking,
+        Idle
+    }
+
     private direction face_dir;
+    private motion_state motion;
     // Use this for initialization
     void Start()
     {
@@ -122,6 +132,7 @@ public class PlayerScript : MonoBehaviour
 
         // [TENTATIVE]: Idle or starting face direction is South.
         face_dir = direction.South;
+        motion = motion_state.Idle;
 
         // Stat intialization.
         p_max_health = instance.def_max_health;
@@ -140,6 +151,7 @@ public class PlayerScript : MonoBehaviour
 
         if(Input.GetKey(keybind.keys["Dash"]) && p_mana > 5)
         {
+            motion = motion_state.Dashing;
             sprintFactor = 20.0f;
 
             p_mana -= 3f * Time.deltaTime;
@@ -151,44 +163,67 @@ public class PlayerScript : MonoBehaviour
         }
 
         // Look for WASD input and act on that context.
-        if (Input.GetKey(keybind.keys["Up"]))
+        if (Input.GetKey(keybind.keys["Up"]) && !Input.GetKeyDown(keybind.keys["Down"]))
         { 
-            p_anim_controller.Play("north_walk", 0);                        // Play animation to make sprite face north.
+            if(motion == motion_state.Idle ) { p_anim_controller.Play("north_walk", 0); }
+                 //|| Input.GetKey(keybind.keys["Down"])                    // Play animation to make sprite face north.
             face_dir = direction.North;
+            motion = motion_state.Walking;
             movement = new Vector3(0.0f, Input.GetAxis("Vertical"), 0.0f);
             transform.position += movement * Time.deltaTime * sprintFactor;                // Actually move the sprite.
         }
         // Same process for the other three Key reading If-statements.
-        if (Input.GetKey(keybind.keys["Left"]))
+        if (Input.GetKey(keybind.keys["Left"]) && !Input.GetKeyDown(keybind.keys["Right"]))
         {
-            p_anim_controller.Play("west_walk", 0);
+            if (motion == motion_state.Idle ) { p_anim_controller.Play("west_walk", 0); }
+             // || Input.GetKey(keybind.keys["Right"])
             face_dir = direction.West;
+            motion = motion_state.Walking;
             movement = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);
             transform.position += movement * Time.deltaTime * sprintFactor;
         }
 
-        if (Input.GetKey(keybind.keys["Down"]))
+        if (Input.GetKey(keybind.keys["Down"]) && !Input.GetKeyDown(keybind.keys["Up"]))
         {
-            p_anim_controller.Play("south_walk", 0);
+            if (motion == motion_state.Idle ) { p_anim_controller.Play("south_walk", 0); }
+               // || Input.GetKey(keybind.keys["Up"])
             face_dir = direction.South;
+            motion = motion_state.Walking;
             movement = new Vector3(0.0f, Input.GetAxis("Vertical"), 0.0f);
             transform.position += movement * Time.deltaTime * sprintFactor;
         }
 
-        if (Input.GetKey(keybind.keys["Right"]))
+        if (Input.GetKey(keybind.keys["Right"]) && !Input.GetKeyDown(keybind.keys["Left"]))
         {
-            p_anim_controller.Play("east_walk", 0);
+            if (motion == motion_state.Idle ) { p_anim_controller.Play("east_walk", 0); }
+                //|| Input.GetKey(keybind.keys["Left"])
             face_dir = direction.East;
+            motion = motion_state.Walking;
             movement = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);
             transform.position += movement * Time.deltaTime * sprintFactor;
         }
         // Determine and display idle state if there is no input.
-        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
+        if (!Input.GetKey(keybind.keys["Up"]) && !Input.GetKey(keybind.keys["Left"]) && !Input.GetKey(keybind.keys["Down"]) && !Input.GetKey(keybind.keys["Right"]))
         {
-            if (face_dir == direction.North) { p_anim_controller.Play("north_idle", 0, 0f); }
-            if (face_dir == direction.West) { p_anim_controller.Play("west_idle", 0, 0f); }
-            if (face_dir == direction.South) { p_anim_controller.Play("south_idle", 0, 0f); }
-            if (face_dir == direction.East) { p_anim_controller.Play("east_idle", 0, 0f); }
+            motion = motion_state.Idle;
+            switch (face_dir)
+            {
+                case direction.North:
+                    p_anim_controller.Play("north_idle", 0, 0f);
+                    break;
+                case direction.South:
+                    p_anim_controller.Play("south_idle", 0, 0f);
+                    break;
+                case direction.East:
+                    p_anim_controller.Play("east_idle", 0, 0f);
+                    break;
+                case direction.West:
+                    p_anim_controller.Play("west_idle",0, 0f);
+                    break;
+                default: break;
+
+            }
+
         }
 
         if(aimingLineComponent.enabled)
