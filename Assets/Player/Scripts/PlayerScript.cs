@@ -33,7 +33,6 @@ public class PlayerScript : MonoBehaviour
 
     private LineRenderer aimingLineComponent;
     Vector3 lineOriginVertex = new Vector3();
-    private Material aimingTexture;
     
 
     // TODO: Streamline initialization of this List and serialize it in a separate file.
