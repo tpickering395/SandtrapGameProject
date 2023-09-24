@@ -172,6 +172,10 @@ public class PlayerScript : MonoBehaviour
             movement = new Vector3(0.0f, Input.GetAxis("Vertical"), 0.0f);
             transform.position += movement * Time.deltaTime * sprintFactor;                // Actually move the sprite.
         }
+        if (Input.GetKeyUp(keybind.keys["Up"]))
+        {
+            motion = motion_state.Idle;
+        }
         // Same process for the other three Key reading If-statements.
         if (Input.GetKey(keybind.keys["Left"]) && !Input.GetKeyDown(keybind.keys["Right"]))
         {
@@ -181,6 +185,10 @@ public class PlayerScript : MonoBehaviour
             motion = motion_state.Walking;
             movement = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);
             transform.position += movement * Time.deltaTime * sprintFactor;
+        }
+        if (Input.GetKeyUp(keybind.keys["Left"]))
+        {
+            motion = motion_state.Idle;
         }
 
         if (Input.GetKey(keybind.keys["Down"]) && !Input.GetKeyDown(keybind.keys["Up"]))
@@ -192,6 +200,10 @@ public class PlayerScript : MonoBehaviour
             movement = new Vector3(0.0f, Input.GetAxis("Vertical"), 0.0f);
             transform.position += movement * Time.deltaTime * sprintFactor;
         }
+        if (Input.GetKeyUp(keybind.keys["Down"]))
+        {
+            motion = motion_state.Idle;
+        }
 
         if (Input.GetKey(keybind.keys["Right"]) && !Input.GetKeyDown(keybind.keys["Left"]))
         {
@@ -201,6 +213,10 @@ public class PlayerScript : MonoBehaviour
             motion = motion_state.Walking;
             movement = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);
             transform.position += movement * Time.deltaTime * sprintFactor;
+        }
+        if (Input.GetKeyUp(keybind.keys["Right"]))
+        {
+            motion = motion_state.Idle;
         }
         // Determine and display idle state if there is no input.
         if (!Input.GetKey(keybind.keys["Up"]) && !Input.GetKey(keybind.keys["Left"]) && !Input.GetKey(keybind.keys["Down"]) && !Input.GetKey(keybind.keys["Right"]))
