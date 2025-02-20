@@ -114,6 +114,7 @@ public class KeyBindScriptTest : MonoBehaviour
             }
             if (e.isMouse)
             {
+
                 switch (e.button)
                 {
                     case 0:
@@ -145,6 +146,9 @@ public class KeyBindScriptTest : MonoBehaviour
         currentKey.GetComponent<Image>().color = selected;
     }
 
+
+    //bound to gameobject 
+
     public void SaveKeys()
     {
         foreach (var key in keys)
@@ -154,6 +158,10 @@ public class KeyBindScriptTest : MonoBehaviour
 
         PlayerPrefs.Save();
     }
+
+
+
+    //bound to gameobject 
 
     public void ResetKeysToDefault()
     {
