@@ -3,7 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour
+/* [README]
+ * Section is currently broken due to new item framework and being repaired in beta_inventory
+ * The Item database will be redesigned and kept primarily detached from the inventory Game Component.
+ * 
+ * If you are not on the beta_inventory branch, do not uncomment this file as it will be full of missing references/class errors. 
+ * Submit any fixes to the beta_inventory branch if you wish.
+ */
+
+/*public class Inventory : MonoBehaviour
 {
     GameObject inventoryUI;
     GameObject slotUI;
@@ -107,4 +115,4 @@ public class Inventory : MonoBehaviour
         Debug.Log($"Result from container check is: {result}");
         return result == null ? false : true;
     }
-}
+}*/

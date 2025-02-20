@@ -146,7 +146,9 @@ public class KeyBindScriptTest : MonoBehaviour
         currentKey.GetComponent<Image>().color = selected;
     }
 
+
     //bound to gameobject 
+
     public void SaveKeys()
     {
         foreach (var key in keys)
@@ -158,7 +160,9 @@ public class KeyBindScriptTest : MonoBehaviour
     }
 
 
+
     //bound to gameobject 
+
     public void ResetKeysToDefault()
     {
         keys["Up"] = KeyCode.W;
