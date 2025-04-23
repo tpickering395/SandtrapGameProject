@@ -46,6 +46,34 @@ ExportedObj/
 *.opendb
 *.VC.db
 
+# meshes and assets
+*.asset
+*.fbx
+*.STL
+*.stl
+*.obj
+*.OBJ
+*.dae
+*.abc
+*.ply
+*.glb
+*.gltf
+
+# images
+*.png
+
+*.tiff
+*.tif
+
+*.jpg
+*.jpeg
+*.jpe
+
+*.tga
+*.webp
+*.avif
+*.bmp
+
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta
@@ -55,6 +83,29 @@ ExportedObj/
 sysinfo.txt
 
 # Builds
+*.msi
+*.exe
+
+# possible MacOS packages
+*.dmg
+*.App
+*.app
+*.zip
+*.pkg
+*.img
+
+# possible Linux packages
+*.appimage
+*.deb
+*.rpm
+*.flatpak
+*.flatpakref
+*.run
+*.X86
+*.X86_64
+
+
+
 *.apk
 *.unitypackage
 
