@@ -2,6 +2,7 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
+.utmp/
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -9,9 +10,13 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+/[Uu]ser[Ss]ettings/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
+
+#Recordings can get excesive in size
+/[Rr]ecordings/
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
@@ -85,10 +90,10 @@ sysinfo.txt
 # Builds
 *.msi
 *.exe
+*.aab
 
 # possible MacOS packages
 *.dmg
-*.App
 *.app
 *.zip
 *.pkg
@@ -105,9 +110,15 @@ sysinfo.txt
 *.X86_64
 
 
-
 *.apk
 *.unitypackage
-
+*.unitypackage.meta
 # Crashlytics generated file
 crashlytics-build.properties
+
+# Packed Adressables
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+
+# Temp auto-gen Android Assets
+/[Aa]ssets/[Ss]treamingAssets/aa.meta
+/[Aa]ssets/[Ss]treamingAssets/aa/*
