@@ -1,27 +1,16 @@
 Sandtrap
 =====
 
-Repository for version-control of a 2D Game Project under development.
+Repository for version-control of a ~~2D~~ 3D Game Project under development.
 
 A Work-in-Progress game created for fun and learning.
 
-### Update 0.01d
+### Update 0.02a
 
-* Main Character sprite design completed
-
-* Game level-building in-progress.
-
-* Procedural Generation (Random-walk) implemented.
-
-* Basic attacks implemented
-
-* Basic Enemy "fire" sprite created.
-
-* Basic Enemy AI implemented.
+* [NEW!] Transition to Unity3D!
   
-* Health bar and Mana bar implemented.
+* Current Priorities include transferring existing code infrastructure into the new 3D framework and creating a simple dev level for testing.
 
-* Removed current item framework in favor of a custom rewrite.
 
 ## Github Project Board
 
@@ -37,22 +26,25 @@ This should be helpful in keeping tasks in mind, organized, and clear on who's a
 
 * [x] Finalize story and examine it for pacing and dividing it into chapters ("levels" essentially)
 
-* [ ] Research feasability of using 3D elements such as a town/hub that is rendered in 3D.
+* ~~[ ] Research feasability of using 3D elements such as a town/hub that is rendered in 3D.~~  < Transition to 3
 
 * [ ] Refine game mechanic concepts through implementation and testing.
 
 
 ### Technical Roadmap 
 
-* [x] Replace current placeholder tiles/textures with thematic ones that make sense with the current iteration of the story (sandstone, desert-esque)
+* ~~[x] Replace current placeholder tiles/textures with thematic ones that make sense with the current iteration of the story (sandstone, desert-esque)~~
+*  [ ] Create simple dev level with a player object and a flatgrass-style world.
+
+*  [ ] Flesh out how we want Items to work.
 
 * [ ] Create interface for customizing controls (and accompanying custom back-end)
 
 * [ ] Complete glue between inventory back-end and the front-end.
 
-* [ ] Create foundation for attack/item animations (sword swinging, arrow firing, etc). Through scripting or built-in Unity?
+* [ ] ~~Create foundation for attack/item animations (sword swinging, arrow firing, etc). Through scripting or built-in Unity?~~  Build this now in 3D via models
 
-* [ ] Build equipable framework for weapons and armor.
+* [ ] Build equipable framework for weapons and armor. < This should be integrated well with the Item system.
 
 
 ##### Carried over from previous roadmap
